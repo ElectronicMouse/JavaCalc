@@ -18,13 +18,15 @@ public class Calculator2 {
         System.out.println("s - print and exit");
         System.out.println("x - exit without printing");
         System.out.println("c - delete saved data and start anew\n");
-        calculate(); 
+        calculate();
     }
 
     /**
-     * calculate exists to call calculations, controls and print results of math operations
-     * @param num1 number1 given by user
-     * @param num2 number2 given by user
+     * calculate exists to call calculations, controls and print results of math
+     * operations
+     * 
+     * @param num1         number1 given by user
+     * @param num2         number2 given by user
      * @param operatorType math operator or control operator given by user
      */
     public static void calculate() {
@@ -32,8 +34,8 @@ public class Calculator2 {
         double num2;
         OperatorType operatorType;
         num1 = loadNumber();
-        while(true){
-            operatorType= loadOperator();
+        while (true) {
+            operatorType = loadOperator();
             if (operatorType == OperatorType.EXIT) {
                 break;
             }
@@ -51,13 +53,15 @@ public class Calculator2 {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        
+
         }
     }
- /**
+
+    /**
      * loadNumber exists to load user input, specifically numbers
-     * @param input taking user input as string
-     * @param number if input is number, becomes that number 
+     * 
+     * @param input  taking user input as string
+     * @param number if input is number, becomes that number
      */
     private static double loadNumber() {
         String input;
@@ -76,37 +80,41 @@ public class Calculator2 {
         }
         return number;
     }
- /**
-     * loadOperator exists to load user input, specifically math operators and controls
-     * @param input taking user input as string
+
+    /**
+     * loadOperator exists to load user input, specifically math operators and
+     * controls
+     * 
+     * @param input          taking user input as string
      * @param operatorLetter taking only first char of input
      */
-    private static OperatorType loadOperator(){
+    private static OperatorType loadOperator() {
         String input;
         char operatorLetter;
         while (true) {
             System.out.print("Enter an operator: ");
             input = sc.nextLine();
-              if(input.length() ==0){continue;}
+            if (input.length() == 0) {
+                continue;
+            }
 
             operatorLetter = input.charAt(0);
             switch (operatorLetter) {
                 case '+':
                     return OperatorType.PLUS;
                 case '-':
-                return OperatorType.MINUS;
+                    return OperatorType.MINUS;
                 case '*':
-                return OperatorType.MULTIPLY;
+                    return OperatorType.MULTIPLY;
                 case '/':
-                return OperatorType.DIVIDE;
+                    return OperatorType.DIVIDE;
                 case 's':
-                return OperatorType.PRINT_EXIT;
+                    return OperatorType.PRINT_EXIT;
                 case 'x':
-                return OperatorType.EXIT;
+                    return OperatorType.EXIT;
                 case 'c':
-                return OperatorType.DELETE;
-                
-            
+                    return OperatorType.DELETE;
+
                 default:
                     continue;
             }
@@ -114,10 +122,10 @@ public class Calculator2 {
 
     }
 
-     /**
+    /**
      * makeOperation exists to calculate based on user input
      */
-    private static double makeOperation(OperatorType operatorType, double num1, double num2) throws Exception{
+    private static double makeOperation(OperatorType operatorType, double num1, double num2) throws Exception {
 
         switch (operatorType) {
             case PLUS:
@@ -126,24 +134,24 @@ public class Calculator2 {
             case MINUS:
                 num1 -= num2;
                 break;
-                case MULTIPLY:
+            case MULTIPLY:
                 num1 *= num2;
                 break;
-                case DIVIDE:
-                if(num2 == 0){
+            case DIVIDE:
+                if (num2 == 0) {
                     throw new Exception("You cant divide by zero, math cant handle that");
                 }
                 num1 /= num2;
                 break;
-        
+
             default:
                 break;
         }
 
-
         return num1;
     }
-     /**
+
+    /**
      * OperatorType exists to define specific control words and operators
      */
 
