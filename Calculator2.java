@@ -9,15 +9,23 @@ public class Calculator2 {
     private static Scanner sc = new Scanner(System.in);
 
     /**
-     * main exists to start our calculator and get first inputs from user
+     * main exists to explain usage to user and start our calculator
      */
     public static void main(String[] args) {
-        System.out.println();
+        System.out.println("This is a simple calculator app, it has:");
+        System.out.println("basic math operators (+,-,*,/)");
+        System.out.println("control keys usable anytime:");
+        System.out.println("s - print and exit");
+        System.out.println("x - exit without printing");
+        System.out.println("c - delete saved data and start anew\n");
         calculate(); 
     }
 
     /**
-     * calculate exists to calculate results of math operations
+     * calculate exists to call calculations, controls and print results of math operations
+     * @param num1 number1 given by user
+     * @param num2 number2 given by user
+     * @param operatorType math operator or control operator given by user
      */
     public static void calculate() {
         double num1;
@@ -46,7 +54,11 @@ public class Calculator2 {
         
         }
     }
-
+ /**
+     * loadNumber exists to load user input, specifically numbers
+     * @param input taking user input as string
+     * @param number if input is number, becomes that number 
+     */
     private static double loadNumber() {
         String input;
         double number;
@@ -64,7 +76,11 @@ public class Calculator2 {
         }
         return number;
     }
-
+ /**
+     * loadOperator exists to load user input, specifically math operators and controls
+     * @param input taking user input as string
+     * @param operatorLetter taking only first char of input
+     */
     private static OperatorType loadOperator(){
         String input;
         char operatorLetter;
@@ -98,6 +114,9 @@ public class Calculator2 {
 
     }
 
+     /**
+     * makeOperation exists to calculate based on user input
+     */
     private static double makeOperation(OperatorType operatorType, double num1, double num2) throws Exception{
 
         switch (operatorType) {
@@ -124,6 +143,10 @@ public class Calculator2 {
 
         return num1;
     }
+     /**
+     * OperatorType exists to define specific control words and operators
+     */
+
     private enum OperatorType {
         PLUS, MINUS, MULTIPLY, DIVIDE, DELETE, PRINT_EXIT, EXIT;
 
