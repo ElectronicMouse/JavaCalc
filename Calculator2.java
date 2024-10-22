@@ -12,12 +12,14 @@ public class Calculator2 {
      * main exists to explain usage to user and start our calculator
      */
     public static void main(String[] args) {
-        System.out.println("This is a simple calculator app, it has:");
-        System.out.println("basic math operators (+,-,*,/)");
-        System.out.println("control keys usable anytime:");
-        System.out.println("s - print and exit");
-        System.out.println("x - exit without printing");
-        System.out.println("c - delete saved data and start anew\n");
+        StringBuilder introduction = new StringBuilder();
+        introduction.append("\nThis is a simple calculator app, it has:\n");
+        introduction.append("basic math operators (+,-,*,/)\n");
+        introduction.append("control keys usable anytime:\n");
+        introduction.append("s - print and exit\n");
+        introduction.append("x - exit without printing\n");
+        introduction.append("c - delete saved data and start anew\n");
+        System.out.println(introduction);
         calculate();
     }
 
@@ -25,9 +27,9 @@ public class Calculator2 {
      * calculate exists to call calculations, controls and print results of math
      * operations
      * 
-     * @param num1         number1 given by user
-     * @param num2         number2 given by user
-     * @param operatorType math operator or control operator given by user
+     * num1         number1 given by user
+     * num2         number2 given by user
+     * operatorType math operator or control operator given by user
      */
     public static void calculate() {
         double num1;
@@ -60,8 +62,8 @@ public class Calculator2 {
     /**
      * loadNumber exists to load user input, specifically numbers
      * 
-     * @param input  taking user input as string
-     * @param number if input is number, becomes that number
+     * input  taking user input as string
+     * number if input is number, becomes that number
      */
     private static double loadNumber() {
         String input;
@@ -85,8 +87,8 @@ public class Calculator2 {
      * loadOperator exists to load user input, specifically math operators and
      * controls
      * 
-     * @param input          taking user input as string
-     * @param operatorLetter taking only first char of input
+     * input          taking user input as string
+     * operatorLetter taking only first char of input
      */
     private static OperatorType loadOperator() {
         String input;
@@ -125,7 +127,7 @@ public class Calculator2 {
     /**
      * makeOperation exists to calculate based on user input
      */
-    private static double makeOperation(OperatorType operatorType, double num1, double num2) throws Exception {
+    private static double makeOperation(OperatorType operatorType, double num1, double num2) {
 
         switch (operatorType) {
             case PLUS:
@@ -138,10 +140,12 @@ public class Calculator2 {
                 num1 *= num2;
                 break;
             case DIVIDE:
-                if (num2 == 0) {
-                    throw new Exception("You cant divide by zero, math cant handle that");
+                try {
+                    num1 /= num2;
+                } catch (ArithmeticException e) {
+                 throw new ArithmeticException(e.toString());
                 }
-                num1 /= num2;
+
                 break;
 
             default:
